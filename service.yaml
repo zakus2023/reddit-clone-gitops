@@ -1,15 +1,16 @@
-apiVersion: v1
-kind: Service
+apiVersion: v1          # Specifies that we are using the v1 API version to define a Service.
+kind: Service           # Defines the resource type as a Service, which exposes an application running on a set of pods.
 metadata:
-  name: reddit-clone-service
+  name: reddit-clone-service  # The name of the Service object, used to identify it within the namespace.
   labels:
-    app: reddit-clone-app 
+    app: reddit-clone-app     # Labels are key-value pairs used to categorize and identify this service.
 spec:
   selector:
-    app: reddit-clone-app
+    app: reddit-clone-app     # The Service uses this selector to find pods with the label 'app: reddit-clone-app' and direct traffic to them.
 
   ports:
-    - port: 3000
-      targetPort: 3000
+    - port: 3000              # The port on which the Service is exposed externally.
+      targetPort: 3000         # The port on the container that the Service forwards traffic to. Both ports are 3000 in this case.
 
-  type: LoadBalancer
+  type: LoadBalancer           # Specifies the Service type as LoadBalancer, which exposes the Service externally via a cloud provider's load balancer.
+

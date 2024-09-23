@@ -1,24 +1,24 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: apps/v1        # Specifies that we are using the apps/v1 API version to define a Deployment.
+kind: Deployment           # Defines the resource type as a Deployment, which manages replica sets to ensure the specified number of pods are running.
 metadata:
-  name: reddit-clone-deployment
+  name: reddit-clone-deployment  # The name of the Deployment object, which is used to uniquely identify it within the namespace.
 spec:
-  replicas: 1
+  replicas: 1            # Specifies the number of pod replicas that should be running. In this case, we only want one replica.
   selector:
-    matchLabels:
-      app: reddit-clone-app
+    matchLabels:         # This defines a label selector to identify the pods managed by this deployment.
+      app: reddit-clone-app  # The label key-value pair that must match the pods managed by this deployment.
   template:
     metadata:
       labels:
-        app: reddit-clone-app
+        app: reddit-clone-app  # Assigns the same label to the pod template, so the deployment knows which pods it controls.
     spec:
-      containers:
-        - name: reddit-clone-app
-          image: ashfaque9x/reddit-clone-pipeline:1.0.0-11
+      containers:          # This section defines the container(s) that should run in each pod.
+        - name: reddit-clone-app  # The name of the container that will run inside the pod.
+          image: ashfaque9x/reddit-clone-pipeline:1.0.0-11  # The Docker image that will be pulled and used for this container.
           resources:
             limits:
-              cpu: "1"
+              cpu: "1"         # Specifies the maximum CPU resource limit for the container. In this case, it can use up to 1 CPU core.
             requests:
-              cpu: "500m"
+              cpu: "500m"      # Specifies the minimum CPU resources requested for the container. It will request 500 millicores (half of a CPU).
           ports:
-            - containerPort: 3000
+            - containerPort: 3000  # The port that the container will listen on within the pod, typically the port used by the application (here, 3000).

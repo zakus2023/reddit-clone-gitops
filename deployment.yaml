@@ -14,7 +14,7 @@ spec:
     spec:
       containers:          # This section defines the container(s) that should run in each pod.
         - name: reddit-clone-app  # The name of the container that will run inside the pod.
-          image: zakus2024/reddit-clone-pipeline:1.0.0-6  # The Docker image that will be pulled and used for this container.
+          image: zakus2024/reddit-clone-pipeline:1.0.0-11  # The Docker image that will be pulled and used for this container.
           resources:
             limits:
               cpu: "1"         # Specifies the maximum CPU resource limit for the container. In this case, it can use up to 1 CPU core.

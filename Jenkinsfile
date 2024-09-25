@@ -1,21 +1,20 @@
 pipeline {
     agent any
-
     environment {
           APP_NAME = "reddit-clone-pipeline"
     }
     stages {
-        stage("Cleanup Workspace") {
+         stage("Cleanup Workspace") {
              steps {
                 cleanWs()
              }
          }
-          stage("Checkout from SCM") {
+         stage("Checkout from SCM") {
              steps {
                      git branch: 'main', credentialsId: 'github', url: 'https://github.com/zakus2023/reddit-clone-gitops'
              }
          }
-          stage("Update the Deployment Tags") {
+         stage("Update the Deployment Tags") {
             steps {
                 sh """
                     cat deployment.yaml
@@ -24,7 +23,7 @@ pipeline {
                 """
             }
          }
-           stage("Push the changed deployment file to GitHub") {
+         stage("Push the changed deployment file to GitHub") {
             steps {
                 sh """
                     git config --global user.name "zakus2023"
@@ -38,5 +37,4 @@ pipeline {
             }
          }
     }
-
 }

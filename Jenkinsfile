@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
           APP_NAME = "reddit-clone-pipeline"
+           IMAGE_TAG = "latest"  // Placeholder for the Docker image tag (can be overridden)
     }
     stages {
          stage("Cleanup Workspace") {
